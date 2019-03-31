@@ -1,0 +1,149 @@
+    Lab 6: Operating Systems Auditing and Intrusion Detection
+                    Systems - Rules Definition
+ Introduction to Computer Security (EECS 3482)
+Department of Electrical Engineering and Computer Science
+                         Khalil Abuosba, Ph.D.
+                              Winter 2019
+Lab 6             EECS 3482            Winter 2019      Page 1 of 10
+  The purpose of this lab is to introduce you to the building blocks of writing auditing rules deployed in
+  Linux operating systems as well as Snort rules.
+  General Information and Policies
+  - Solutions must to be submitted on through the Moodle system.
+  - Ideal reports include screen snapshots of all of the exercises as well as copies of data segments where
+    applicable.
+  Objectives
+       -   To identify keywords of the rules syntax.
+       -   To sample the auditing process of Linux environment.
+Keywords
+Snort, ipvar, portvar, alert, payload, log, pass, activate, dynamic, drop, reject, sdrop
+Reading and References
+Intrusion Detection Terminology
+       - Intrusion Detection Terminology (P1), Symantec Connect:
+         https://www.symantec.com/connect/articles/intrusion-detection-terminology-
+         part-one
+       - Snort User Manual: https://s3.amazonaws.com/snort-org-
+         site/production/document_files/files/000/000/117/original/snort_manual.pdf?AW
+         SAccessKeyId=AKIAIXACIED2SPMSC7GA&Expires=1489535462&Signature=M%
+         2BRZk%2F4Zaiw8pHEE66shmJr8UWc%3D
+       - http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node29.html
+Software Requirements
+    -    Text Editor.
+    -    VirtualBox and Centos Linux Operating Systems.
+Deliverables
+    -    Lab report that includes snapshot of the procedures and answers to the
+         questions addressed in the lab.
+ Lab 6                        EECS 3482                      Winter 2019                        Page 2 of 10
+Part 1: Introduction to Linux Operating Systems Auditing
+    1. Download Linux Centos Operating System
+           o https://www.centos.org/download/
+                   ▪ http://centos.mirror.rafal.ca/7.6.1810/isos/x86_64/CentOS-7-
+                      x86_64-DVD-1810.iso
+    2. Create a virtual machine on VirtualBox and link the image to the virtual machine
+           o In VirtualBox ➔ Settings ➔ Optical Drive ➔ Select the image of Centos
+    3. Fulfill the process of Centos Linux and keep all installation attributes (including
+       specifying root password and creating a user) as per the default values.
+    4. Start the audit demon service:
+       systemctl start auditd.service
+    5. Inspect the audit configuration file:
+       cat /etc/audit/auditd.conf
+       cat /etc/audit/auditd.conf|more
+    6. Inspect the audit.log file
+       cat /var/log/audit/audit.log
+    7. Examine the auditctl command switches:
+       auditctl|more
+    8. List the auditing rules:
+       auditctl -l
+ Lab 6                   EECS 3482                 Winter 2019                    Page 3 of 10
+   9. Append a rule to the auditing rules list that log the access to the passwd file for
+       events with write or change attribute:
+       auditctl -a exit,always -F path=/etc/passwd -F perm=wa
+   10. Attempt running the command
+       auditctl -a exit,always -F path=/etc/passwd -F perm=wa
+   11. List logs associated with the passwd file:
+       ausearch -f /etc/passwd           <== where there any entries?
+   12. Create a new user:
+       adduser xyz
+   13. List logs associated with the passwd file:
+       ausearch -f /etc/passwd           <== where there any entries that maps to
+                                                     the adduser command?
+   14. In the output of running the command ausearch -f /etc/passwd, identify the
+       system calls; system call type is identified by a number; run the following
+       command to identify the type of each system calls were executed in association
+       with adduser command:
+       auscall x86_64 x         <=== where x is the system call number, such as:
+                                            auscall x86_64 2
+Lab 6                    EECS 3482                  Winter 2019                Page 4 of 10
+   15. Determine the file access permissions for the file /etc/passwd
+       dir /etc/passwd -l
+   16. Modify the permission to 640 for passwd
+       Use the chmod command
+   17. determine the current permissions for /etc/passwd:
+       dir /etc/passwd -l
+   18. Examine whether there is a new log entery for the /etc/passwd file:
+       ausearch -f /etc/passwd
+   19. Identify the value of the field COMM in the log.
+   20. Create an audit report report for log entries associated with the passwd file:
+       ausearch -f /etc/passwd | aureport -f -i
+   21. Retrieve the login records of today:
+       ausearch -m LOGIN --start today -i
+Lab 6                   EECS 3482                  Winter 2019                Page 5 of 10
+Part 2: Introduction to Snort IDSs Rules
+ Lab 6                  EECS 3482        Winter 2019 Page 6 of 10
+Lab 6 EECS 3482 Winter 2019 Page 7 of 10   
+
+  1. Direction of Traffic (<-->, ->, <-)
+      1. The ______________ symbol is used to indicate traffic from internal network
+         to external network.
+      2. The ______________ symbol is used to indicate bidirectional traffic between
+         internal and external networks.
+      3. The ______________ symbol is used to indicate traffic from external to
+         internal networks.
+   2. Setup of Network Addresses (HOME_NET, EXTERNAL_NET, and ipvar)
+   1. Declare all hosts in the internal network:
+      Ipvar ____________________
+   2. Declare all hosts in the external network
+      Ipvar ____________________
+   3. Declare the variable net100 for the 192.168.1.0, class C subnet and the and the
+      10.1.1.0, class A subnet
+      Ipvar _______ [192.168.1.0/24, ____________ ]
+   4. Declare clientA as IP list that has two IPs:192.168.0.1 and 10.0.1.1
+      Ipvar _________ [                    ,              ]
+   3. Declare internal servers
+   1. Declare all of the web servers of your network: (HTTP_SERVERS, HOME_NET)
+      Ipvar _________________________
+   2. Declare all E-mail servers of your network
+      Ipvar SMTP_SERVERS __________
+   3. Declare all of DNS servers of your network
+      Ipvar ____________ _____________
+   4. Declare all of secure shell servers of your network
+      ipvar ____________ _____________
+   5. Declare all of file servers of your network
+      ipvar ____________ _____________
+   6. Declare all IP telephony servers of your network
+      ipvar ____________ _____________
+   4. Declaring Ports
+   1. Specify list port numbers that web servers are run on
+      portvar HTTP_PORTS [ __________ ]
+   2. Specify list of all ports that of type SHELLCODE except the http port
+      portvar _____________ !________
+   3. Specify List of ports you want to look for SSH connection on
+      _____________________
+   4. Specify the ports variable: well_known with the rang of port number 0 through
+      1024
+      portvar _______________ [ 0 : ______ ]
+   5. Simple Rules (Notice that content rules are case sensitive unless you use the "nocase" option)
+   1. Write a rule that alerts for any tcp traffic from any external network to any internal
+      network (use action as alert, source IP as any, source port number as any,
+      destination IP as any, destination port as HTTP port number, and the payload is
+      has a HEAD, PUT, POST, or Delete but not !GET
+      alert _______ ______ ______ -> ________ 80 (content: !”GET”;)
+   2. Write a rule that alerts with the message “Backdoor signature was detected –
+      Subseven Trojan”, where traffic is directed from the external network to the
+      external network, the signature value/payload is "|0d0a5b52504c5d3030320d0a|",
+      and the reference number for the vulnerability is arachnids,485
+         o Use the syntax:
+                 ▪   alert <protocol> <net> <port> -> <net> <port> (msg: “ ”;content: “ ”; reference:)
+   3. Use the “bidirectional operator” and the “log” action command to record both
+      sides of telnet sessions directed to from any network and port (except to from
+      192.168.0.1/24) to 192.168.1.0/24 subnet at port 23
+      ____________. !192.168.1.0/24 <> ___________/_____ ___________

@@ -1,0 +1,49 @@
+
+# 0.
+sed -i 's/\/var\/www\/\html/\/html/g' \
+    /etc/apache2/sites-available/000-default.conf 
+systemctl reload apache2
+# 1. 
+mkdir /html
+# 2
+touch /html/index.html
+# 3
+ls -Z /html/index.html
+system_u:object_r:root_t:s0 /html/index.html
+# 4
+ls -Zd /html
+system_u:object_r:root_t:s0 /html
+# 5
+curl -s localhost | html2markdown
+# Forbidden
+
+You don't have permission to access / on this server.  
+
+* * *
+
+Apache/2.4.34 (Debian) Server at localhost Port 80
+
+# 6
+chcon -v --type=httpd_sys_content_t /html
+changing security context of '/html'
+# 7
+chcon -v --type=httpd_sys_content_t /html/index.html
+changing security context of '/html/index.html'
+# 7a
+ls -Z /html/index.html
+system_u:object_r:httpd_sys_content_t:s0 /html/index.html
+# 7b
+ls -Zd /html
+system_u:object_r:httpd_sys_content_t:s0 /html
+curl -s localhost | html2markdown
+# Forbidden
+
+You don't have permission to access / on this server.  
+
+* * *
+
+Apache/2.4.34 (Debian) Server at localhost Port 80
+
+#8 
+touch /.autorelabel
+

@@ -1,0 +1,857 @@
+Script started on Sun 31 Mar 2019 08:20:06 PM EDT
++ systemctl start auditd.service
++ cat /etc/audit/auditd.conf
+#
+# This file controls the configuration of the audit daemon
+#
+
+local_events = yes
+write_logs = yes
+log_file = /var/log/audit/audit.log
+log_group = root
+log_format = RAW
+flush = INCREMENTAL_ASYNC
+freq = 50
+max_log_file = 8
+num_logs = 5
+priority_boost = 4
+disp_qos = lossy
+dispatcher = /sbin/audispd
+name_format = NONE
+##name = mydomain
+max_log_file_action = ROTATE
+space_left = 75
+space_left_action = SYSLOG
+verify_email = yes
+action_mail_acct = root
+admin_space_left = 50
+admin_space_left_action = SUSPEND
+disk_full_action = SUSPEND
+disk_error_action = SUSPEND
+use_libwrap = yes
+##tcp_listen_port = 60
+tcp_listen_queue = 5
+tcp_max_per_addr = 1
+##tcp_client_ports = 1024-65535
+tcp_client_max_idle = 0
+enable_krb5 = no
+krb5_principal = auditd
+##krb5_key_file = /etc/audit/audit.key
+distribute_network = no
++ cat /var/log/audit/audit.log
+type=DAEMON_START msg=audit(1554077215.769:9005): op=start ver=2.8.4 format=raw kernel=3.10.0-957.el7.x86_64 auid=4294967295 pid=2667 uid=0 ses=4294967295 subj=system_u:system_r:auditd_t:s0 res=success
+type=CONFIG_CHANGE msg=audit(1554077215.914:5): audit_backlog_limit=8192 old=64 auid=4294967295 ses=4294967295 subj=system_u:system_r:unconfined_service_t:s0 res=1
+type=CONFIG_CHANGE msg=audit(1554077215.914:6): audit_failure=1 old=1 auid=4294967295 ses=4294967295 subj=system_u:system_r:unconfined_service_t:s0 res=1
+type=SERVICE_START msg=audit(1554077215.914:7): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=auditd comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SYSTEM_BOOT msg=audit(1554077215.923:8): pid=2690 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg=' comm="systemd-update-utmp" exe="/usr/lib/systemd/systemd-update-utmp" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077215.925:9): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-update-utmp comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.009:10): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=dbus comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.015:11): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=irqbalance comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.028:12): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=rhel-dmesg comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.040:13): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-user-sessions comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.052:14): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=crond comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077216.071:15): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=irqbalance comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.085:16): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-start comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077216.089:17): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-start comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.091:18): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-quit-wait comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077216.091:19): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-quit-wait comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.091:20): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-quit comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077216.091:21): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-quit comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.102:22): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=polkit comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.102:23): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-logind comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.110:24): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=getty@tty1 comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.630:25): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=sshd-keygen comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.740:26): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=firewalld comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=NETFILTER_CFG msg=audit(1554077216.776:27): table=filter family=2 entries=0
+type=SYSCALL msg=audit(1554077216.776:27): arch=c000003e syscall=175 success=yes exit=0 a0=1579130 a1=1d95 a2=41a94e a3=1575300 items=0 ppid=2780 pid=2781 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077216.776:27): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D0069707461626C655F66696C746572
+type=SERVICE_START msg=audit(1554077216.810:28): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=NETFILTER_CFG msg=audit(1554077216.833:29): table=filter family=2 entries=0
+type=SYSCALL msg=audit(1554077216.833:29): arch=c000003e syscall=272 success=yes exit=0 a0=40000000 a1=7ffc43ff9950 a2=40000040 a3=22 items=0 ppid=1 pid=2792 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="(ostnamed)" exe="/usr/lib/systemd/systemd" subj=system_u:system_r:init_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077216.833:29): proctitle="(ostnamed)"
+type=NETFILTER_CFG msg=audit(1554077216.860:30): table=filter family=10 entries=0
+type=NETFILTER_CFG msg=audit(1554077216.860:30): table=filter family=10 entries=0
+type=SYSCALL msg=audit(1554077216.860:30): arch=c000003e syscall=175 success=yes exit=0 a0=73a130 a1=1d85 a2=41a94e a3=736300 items=0 ppid=2795 pid=2796 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077216.860:30): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D006970367461626C655F66696C746572
+type=SERVICE_START msg=audit(1554077216.899:31): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-hostnamed comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.920:32): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager-dispatcher comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077216.991:33): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager-wait-online comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=NETFILTER_CFG msg=audit(1554077217.010:34): table=raw family=2 entries=0
+type=NETFILTER_CFG msg=audit(1554077217.010:34): table=raw family=2 entries=0
+type=SYSCALL msg=audit(1554077217.010:34): arch=c000003e syscall=175 success=yes exit=0 a0=f39190 a1=1a75 a2=41a94e a3=f35300 items=0 ppid=2822 pid=2823 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077217.010:34): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D0069707461626C655F726177
+type=NETFILTER_CFG msg=audit(1554077217.031:35): table=security family=2 entries=0
+type=NETFILTER_CFG msg=audit(1554077217.031:35): table=security family=2 entries=0
+type=SYSCALL msg=audit(1554077217.031:35): arch=c000003e syscall=175 success=yes exit=0 a0=1115170 a1=1b3d a2=41a94e a3=1111300 items=0 ppid=2833 pid=2835 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077217.031:35): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D0069707461626C655F7365637572697479
+type=NETFILTER_CFG msg=audit(1554077217.050:36): table=mangle family=2 entries=0
+type=NETFILTER_CFG msg=audit(1554077217.050:36): table=mangle family=2 entries=0
+type=SYSCALL msg=audit(1554077217.050:36): arch=c000003e syscall=175 success=yes exit=0 a0=2429130 a1=1c75 a2=41a94e a3=2425300 items=0 ppid=2847 pid=2850 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077217.050:36): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D0069707461626C655F6D616E676C65
+type=NETFILTER_CFG msg=audit(1554077217.116:37): table=nat family=2 entries=0
+type=NETFILTER_CFG msg=audit(1554077217.116:37): table=nat family=2 entries=0
+type=SYSCALL msg=audit(1554077217.116:37): arch=c000003e syscall=175 success=yes exit=0 a0=21e4890 a1=20ed a2=41a94e a3=21e0300 items=0 ppid=2864 pid=2866 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077217.116:37): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D0069707461626C655F6E6174
+type=NETFILTER_CFG msg=audit(1554077217.134:38): table=raw family=10 entries=0
+type=NETFILTER_CFG msg=audit(1554077217.134:38): table=raw family=10 entries=0
+type=SYSCALL msg=audit(1554077217.134:38): arch=c000003e syscall=175 success=yes exit=0 a0=ac5130 a1=1a3d a2=41a94e a3=ac1300 items=0 ppid=2905 pid=2907 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077217.134:38): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D006970367461626C655F726177
+type=NETFILTER_CFG msg=audit(1554077217.148:39): table=security family=10 entries=0
+type=NETFILTER_CFG msg=audit(1554077217.148:39): table=security family=10 entries=0
+type=SYSCALL msg=audit(1554077217.148:39): arch=c000003e syscall=175 success=yes exit=0 a0=f0c130 a1=1b0d a2=41a94e a3=f08300 items=0 ppid=2914 pid=2916 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077217.148:39): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D006970367461626C655F7365637572697479
+type=NETFILTER_CFG msg=audit(1554077217.161:40): table=mangle family=10 entries=0
+type=NETFILTER_CFG msg=audit(1554077217.161:40): table=mangle family=10 entries=0
+type=SYSCALL msg=audit(1554077217.161:40): arch=c000003e syscall=175 success=yes exit=0 a0=151f130 a1=1d95 a2=41a94e a3=151b300 items=0 ppid=2921 pid=2923 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077217.161:40): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D006970367461626C655F6D616E676C65
+type=NETFILTER_CFG msg=audit(1554077217.196:41): table=nat family=10 entries=0
+type=NETFILTER_CFG msg=audit(1554077217.196:41): table=nat family=10 entries=0
+type=SYSCALL msg=audit(1554077217.196:41): arch=c000003e syscall=175 success=yes exit=0 a0=a188b0 a1=20e5 a2=41a94e a3=a14300 items=0 ppid=2927 pid=2930 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077217.196:41): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D006970367461626C655F6E6174
+type=SERVICE_START msg=audit(1554077217.570:42): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=network comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077217.646:43): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=rsyslog comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077217.691:44): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=sshd comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=NETFILTER_CFG msg=audit(1554077218.301:45): table=filter family=10 entries=4
+type=SYSCALL msg=audit(1554077218.301:45): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1695d60 items=0 ppid=2736 pid=3401 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.301:45): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.322:46): table=raw family=10 entries=3
+type=SYSCALL msg=audit(1554077218.322:46): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1694650 items=0 ppid=2736 pid=3401 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.322:46): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.322:47): table=security family=10 entries=4
+type=SYSCALL msg=audit(1554077218.322:47): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1694650 items=0 ppid=2736 pid=3401 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.322:47): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.322:48): table=mangle family=10 entries=6
+type=SYSCALL msg=audit(1554077218.322:48): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1694b70 items=0 ppid=2736 pid=3401 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.322:48): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.322:49): table=nat family=10 entries=5
+type=SYSCALL msg=audit(1554077218.322:49): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1694a90 items=0 ppid=2736 pid=3401 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.322:49): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.340:50): table=filter family=2 entries=4
+type=SYSCALL msg=audit(1554077218.340:50): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=2626890 items=0 ppid=2736 pid=3426 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.340:50): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.356:51): table=raw family=2 entries=3
+type=SYSCALL msg=audit(1554077218.356:51): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=2625460 items=0 ppid=2736 pid=3426 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.356:51): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.356:52): table=security family=2 entries=4
+type=SYSCALL msg=audit(1554077218.356:52): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=2625460 items=0 ppid=2736 pid=3426 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.356:52): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.356:53): table=mangle family=2 entries=6
+type=SYSCALL msg=audit(1554077218.356:53): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=26257a0 items=0 ppid=2736 pid=3426 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.356:53): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.356:54): table=nat family=2 entries=5
+type=SYSCALL msg=audit(1554077218.356:54): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=26255e0 items=0 ppid=2736 pid=3426 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.356:54): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.368:55): table=filter family=7 entries=3
+type=SYSCALL msg=audit(1554077218.368:55): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=201a3b0 items=0 ppid=2736 pid=3447 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.368:55): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077218.371:56): table=broute family=7 entries=1
+type=SYSCALL msg=audit(1554077218.371:56): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=201a3b0 items=0 ppid=2736 pid=3447 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.371:56): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077218.372:57): table=nat family=7 entries=3
+type=SYSCALL msg=audit(1554077218.372:57): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=201a3b0 items=0 ppid=2736 pid=3447 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.372:57): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077218.384:58): table=raw family=10 entries=15
+type=SYSCALL msg=audit(1554077218.384:58): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1c6d690 items=0 ppid=2736 pid=3455 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.384:58): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.420:59): table=filter family=2 entries=39
+type=SYSCALL msg=audit(1554077218.420:59): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=15ed2c0 items=0 ppid=2736 pid=3470 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.420:59): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.420:60): table=raw family=2 entries=15
+type=SYSCALL msg=audit(1554077218.420:60): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=15e69a0 items=0 ppid=2736 pid=3470 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.420:60): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.420:61): table=mangle family=2 entries=27
+type=SYSCALL msg=audit(1554077218.420:61): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=15e75d0 items=0 ppid=2736 pid=3470 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.420:61): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.420:62): table=nat family=2 entries=26
+type=SYSCALL msg=audit(1554077218.420:62): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=15ec7b0 items=0 ppid=2736 pid=3470 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.420:62): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.428:63): table=filter family=10 entries=39
+type=SYSCALL msg=audit(1554077218.428:63): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=197ab40 items=0 ppid=2736 pid=3477 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.428:63): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.428:64): table=raw family=10 entries=17
+type=SYSCALL msg=audit(1554077218.428:64): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1973360 items=0 ppid=2736 pid=3477 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.428:64): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.428:65): table=mangle family=10 entries=27
+type=SYSCALL msg=audit(1554077218.428:65): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1979990 items=0 ppid=2736 pid=3477 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.428:65): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.430:66): table=nat family=10 entries=26
+type=SYSCALL msg=audit(1554077218.430:66): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1979990 items=0 ppid=2736 pid=3477 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.430:66): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.440:67): table=filter family=10 entries=79
+type=SYSCALL msg=audit(1554077218.440:67): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=85c0e0 items=0 ppid=2736 pid=3482 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.440:67): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.440:68): table=raw family=10 entries=29
+type=SYSCALL msg=audit(1554077218.440:68): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=856bf0 items=0 ppid=2736 pid=3482 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.440:68): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.440:69): table=security family=10 entries=13
+type=SYSCALL msg=audit(1554077218.440:69): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=8553c0 items=0 ppid=2736 pid=3482 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.440:69): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.440:70): table=mangle family=10 entries=39
+type=SYSCALL msg=audit(1554077218.440:70): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=857840 items=0 ppid=2736 pid=3482 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.440:70): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.450:71): table=filter family=2 entries=78
+type=SYSCALL msg=audit(1554077218.450:71): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=13cd410 items=0 ppid=2736 pid=3487 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.450:71): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.450:72): table=raw family=2 entries=27
+type=SYSCALL msg=audit(1554077218.450:72): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=13c8f50 items=0 ppid=2736 pid=3487 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.450:72): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.450:73): table=security family=2 entries=13
+type=SYSCALL msg=audit(1554077218.450:73): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=13c7ff0 items=0 ppid=2736 pid=3487 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.450:73): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.450:74): table=mangle family=2 entries=39
+type=SYSCALL msg=audit(1554077218.450:74): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=13c9cc0 items=0 ppid=2736 pid=3487 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.450:74): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077218.450:75): table=filter family=7 entries=3
+type=SYSCALL msg=audit(1554077218.450:75): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=1edb620 items=0 ppid=2736 pid=3494 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.450:75): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077218.450:76): table=broute family=7 entries=1
+type=SYSCALL msg=audit(1554077218.450:76): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=1edb620 items=0 ppid=2736 pid=3494 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.450:76): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077218.450:77): table=nat family=7 entries=3
+type=SYSCALL msg=audit(1554077218.450:77): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=1edb620 items=0 ppid=2736 pid=3494 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077218.450:77): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=SERVICE_START msg=audit(1554077218.670:78): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=postfix comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077218.670:79): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=tuned comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SYSTEM_RUNLEVEL msg=audit(1554077218.700:80): pid=3620 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='old-level=N new-level=3 comm="systemd-update-utmp" exe="/usr/lib/systemd/systemd-update-utmp" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077218.700:81): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-update-utmp-runlevel comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077218.700:82): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-update-utmp-runlevel comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077227.163:83): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager-dispatcher comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=USER_AUTH msg=audit(1554077228.110:84): pid=2737 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=PAM:authentication grantors=pam_securetty,pam_unix acct="root" exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=USER_ACCT msg=audit(1554077228.110:85): pid=2737 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="root" exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=CRED_ACQ msg=audit(1554077228.116:86): pid=2737 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_securetty,pam_unix acct="root" exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=LOGIN msg=audit(1554077228.116:87): pid=2737 uid=0 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 old-auid=4294967295 auid=0 tty=tty1 old-ses=4294967295 ses=1 res=1
+type=USER_ROLE_CHANGE msg=audit(1554077228.223:88): pid=2737 uid=0 auid=0 ses=1 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='pam: default-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 selected-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=USER_START msg=audit(1554077228.255:89): pid=2737 uid=0 auid=0 ses=1 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_selinux,pam_loginuid,pam_console,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=CRED_REFR msg=audit(1554077228.255:90): pid=2737 uid=0 auid=0 ses=1 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_securetty,pam_unix acct="root" exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=USER_LOGIN msg=audit(1554077228.255:91): pid=2737 uid=0 auid=0 ses=1 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=SERVICE_START msg=audit(1554077236.092:92): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=kdump comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077239.672:93): pid=12970 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=12970 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077239.672:94): pid=12970 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=12970 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077239.672:95): pid=12970 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=12970 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077239.672:96): pid=12969 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-server cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=12970 suid=74 rport=54344 laddr=::1 lport=22  exe="/usr/sbin/sshd" hostname=? addr=::1 terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077239.672:97): pid=12969 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-client cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=12970 suid=74 rport=54344 laddr=::1 lport=22  exe="/usr/sbin/sshd" hostname=? addr=::1 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077246.453:98): pid=12969 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:authentication grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=localhost addr=::1 terminal=ssh res=success'
+type=USER_ACCT msg=audit(1554077246.460:99): pid=12969 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="root" exe="/usr/sbin/sshd" hostname=localhost addr=::1 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077246.460:100): pid=12969 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=12970 suid=74 rport=54344 laddr=::1 lport=22  exe="/usr/sbin/sshd" hostname=? addr=::1 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077246.460:101): pid=12969 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=success acct="root" exe="/usr/sbin/sshd" hostname=? addr=::1 terminal=ssh res=success'
+type=CRED_ACQ msg=audit(1554077246.460:102): pid=12969 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=localhost addr=::1 terminal=ssh res=success'
+type=LOGIN msg=audit(1554077246.460:103): pid=12969 uid=0 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=4294967295 auid=0 tty=(none) old-ses=4294967295 ses=2 res=1
+type=USER_ROLE_CHANGE msg=audit(1554077246.570:104): pid=12969 uid=0 auid=0 ses=2 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='pam: default-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 selected-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 exe="/usr/sbin/sshd" hostname=localhost addr=::1 terminal=ssh res=success'
+type=USER_START msg=audit(1554077246.590:105): pid=12969 uid=0 auid=0 ses=2 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_selinux,pam_loginuid,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/sbin/sshd" hostname=localhost addr=::1 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077246.630:106): pid=12973 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=12973 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/0 res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077246.630:107): pid=12973 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=12973 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/0 res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077246.630:108): pid=12973 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=12973 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/0 res=success'
+type=USER_LOGIN msg=audit(1554077246.640:109): pid=12973 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=localhost addr=::1 terminal=/dev/pts/0 res=success'
+type=USER_START msg=audit(1554077246.640:110): pid=12973 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=localhost addr=::1 terminal=/dev/pts/0 res=success'
+type=CRED_REFR msg=audit(1554077246.640:111): pid=12973 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=localhost addr=::1 terminal=ssh res=success'
+type=SERVICE_STOP msg=audit(1554077246.920:112): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-hostnamed comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077351.030:113): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager-dispatcher comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077361.160:114): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager-dispatcher comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=USER_END msg=audit(1554077473.853:115): pid=12969 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=? addr=? terminal=/dev/pts/0 res=success'
+type=USER_END msg=audit(1554077473.870:116): pid=12969 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_close grantors=pam_selinux,pam_loginuid,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/sbin/sshd" hostname=localhost addr=127.0.0.1 terminal=ssh res=success'
+type=CRED_DISP msg=audit(1554077473.870:117): pid=12969 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=localhost addr=127.0.0.1 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077473.870:118): pid=12969 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=12969 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077473.870:119): pid=12969 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=12969 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077473.870:120): pid=12969 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=12969 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077473.870:121): pid=12969 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=12969 suid=0 rport=54344 laddr=::1 lport=22  exe="/usr/sbin/sshd" hostname=? addr=::1 terminal=? res=success'
+type=CRED_DISP msg=audit(1554077475.677:122): pid=2737 uid=0 auid=0 ses=1 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_securetty,pam_unix acct="root" exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=USER_END msg=audit(1554077475.680:123): pid=2737 uid=0 auid=0 ses=1 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=PAM:session_close grantors=pam_selinux,pam_loginuid,pam_console,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=SERVICE_STOP msg=audit(1554077475.690:124): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=getty@tty1 comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077475.690:125): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=getty@tty1 comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077475.690:126): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=getty@tty1 comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077475.700:127): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=getty@tty1 comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077486.670:128): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=rhel-dmesg comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077486.680:129): pid=3110 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3110 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077486.680:130): pid=3110 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3110 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077486.680:131): pid=3110 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3110 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077486.691:132): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=crond comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077486.691:133): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=sshd comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077486.691:134): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=getty@tty1 comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077486.720:135): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=rsyslog comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077486.720:136): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=sshd-keygen comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077486.720:137): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-logind comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077486.743:138): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-user-sessions comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077486.766:139): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=lvm2-pvscan@8:2 comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077486.811:140): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-poweroff comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077486.882:141): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=postfix comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077487.346:142): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=dracut-shutdown comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077487.370:143): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=tuned comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077487.622:144): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=network comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077487.622:145): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager-wait-online comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077487.630:146): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=NETFILTER_CFG msg=audit(1554077487.637:147): table=filter family=10 entries=79
+type=SYSCALL msg=audit(1554077487.637:147): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=2567940 items=0 ppid=2736 pid=13246 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.637:147): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.637:148): table=raw family=10 entries=29
+type=SYSCALL msg=audit(1554077487.637:148): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=25649e0 items=0 ppid=2736 pid=13246 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.637:148): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.637:149): table=security family=10 entries=13
+type=SYSCALL msg=audit(1554077487.637:149): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=25641a0 items=0 ppid=2736 pid=13246 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.637:149): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.637:150): table=mangle family=10 entries=39
+type=SYSCALL msg=audit(1554077487.637:150): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=2566160 items=0 ppid=2736 pid=13246 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.637:150): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.640:151): table=nat family=10 entries=50
+type=SYSCALL msg=audit(1554077487.640:151): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=25662f0 items=0 ppid=2736 pid=13246 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.640:151): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.642:152): table=filter family=2 entries=78
+type=SYSCALL msg=audit(1554077487.642:152): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=2021670 items=0 ppid=2736 pid=13247 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.642:152): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.642:153): table=raw family=2 entries=27
+type=SYSCALL msg=audit(1554077487.642:153): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=201f200 items=0 ppid=2736 pid=13247 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.642:153): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.642:154): table=security family=2 entries=13
+type=SYSCALL msg=audit(1554077487.642:154): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=201ee10 items=0 ppid=2736 pid=13247 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.642:154): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.642:155): table=mangle family=2 entries=39
+type=SYSCALL msg=audit(1554077487.642:155): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=2020590 items=0 ppid=2736 pid=13247 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.642:155): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.642:156): table=nat family=2 entries=50
+type=SYSCALL msg=audit(1554077487.642:156): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=20200b0 items=0 ppid=2736 pid=13247 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.642:156): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.647:157): table=filter family=7 entries=0
+type=SYSCALL msg=audit(1554077487.647:157): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=1ca0270 items=0 ppid=2736 pid=13248 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.647:157): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077487.647:158): table=broute family=7 entries=0
+type=SYSCALL msg=audit(1554077487.647:158): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=1ca0270 items=0 ppid=2736 pid=13248 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.647:158): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077487.647:159): table=nat family=7 entries=0
+type=SYSCALL msg=audit(1554077487.647:159): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=1ca0270 items=0 ppid=2736 pid=13248 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.647:159): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077487.652:160): table=filter family=10 entries=4
+type=SYSCALL msg=audit(1554077487.652:160): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=c73720 items=0 ppid=2736 pid=13249 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.652:160): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.652:161): table=raw family=10 entries=3
+type=SYSCALL msg=audit(1554077487.652:161): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=c73780 items=0 ppid=2736 pid=13249 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.652:161): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.652:162): table=security family=10 entries=4
+type=SYSCALL msg=audit(1554077487.652:162): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=c73ba0 items=0 ppid=2736 pid=13249 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.652:162): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.652:163): table=mangle family=10 entries=6
+type=SYSCALL msg=audit(1554077487.652:163): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=c739e0 items=0 ppid=2736 pid=13249 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.652:163): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.652:164): table=filter family=2 entries=4
+type=SYSCALL msg=audit(1554077487.652:164): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=2088640 items=0 ppid=2736 pid=13250 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.652:164): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.652:165): table=raw family=2 entries=3
+type=SYSCALL msg=audit(1554077487.652:165): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=2088180 items=0 ppid=2736 pid=13250 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.652:165): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.652:166): table=security family=2 entries=4
+type=SYSCALL msg=audit(1554077487.652:166): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=20889e0 items=0 ppid=2736 pid=13250 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.652:166): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.658:167): table=mangle family=2 entries=6
+type=SYSCALL msg=audit(1554077487.658:167): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=2088850 items=0 ppid=2736 pid=13250 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.658:167): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077487.660:168): table=filter family=7 entries=0
+type=SYSCALL msg=audit(1554077487.660:168): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=a8bc80 items=0 ppid=2736 pid=13251 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.660:168): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077487.660:169): table=broute family=7 entries=0
+type=SYSCALL msg=audit(1554077487.660:169): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=a8bc80 items=0 ppid=2736 pid=13251 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.660:169): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077487.660:170): table=nat family=7 entries=0
+type=SYSCALL msg=audit(1554077487.660:170): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=a8bc80 items=0 ppid=2736 pid=13251 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077487.660:170): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=SERVICE_STOP msg=audit(1554077487.830:171): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=firewalld comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077487.830:172): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=polkit comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077487.830:173): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=dbus comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077487.840:174): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-vconsole-setup comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077487.840:175): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-vconsole-setup comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=DAEMON_END msg=audit(1554077487.845:9006): op=terminate auid=0 pid=1 subj=system_u:system_r:init_t:s0 res=success
+type=DAEMON_START msg=audit(1554077524.494:1860): op=start ver=2.8.4 format=raw kernel=3.10.0-957.el7.x86_64 auid=4294967295 pid=2657 uid=0 ses=4294967295 subj=system_u:system_r:auditd_t:s0 res=success
+type=CONFIG_CHANGE msg=audit(1554077524.628:5): audit_backlog_limit=8192 old=64 auid=4294967295 ses=4294967295 subj=system_u:system_r:unconfined_service_t:s0 res=1
+type=CONFIG_CHANGE msg=audit(1554077524.628:6): audit_failure=1 old=1 auid=4294967295 ses=4294967295 subj=system_u:system_r:unconfined_service_t:s0 res=1
+type=SERVICE_START msg=audit(1554077524.628:7): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=auditd comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SYSTEM_BOOT msg=audit(1554077524.637:8): pid=2677 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg=' comm="systemd-update-utmp" exe="/usr/lib/systemd/systemd-update-utmp" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077524.640:9): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-update-utmp comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077524.649:10): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=irqbalance comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077524.734:11): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=dbus comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077524.736:12): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=irqbalance comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077524.736:13): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-user-sessions comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077524.741:14): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=rhel-dmesg comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077524.750:15): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-logind comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077524.790:16): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=crond comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077524.803:17): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-start comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077524.806:18): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-start comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077524.806:19): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-quit-wait comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077524.806:20): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-quit-wait comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077524.806:21): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-quit comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077524.806:22): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=plymouth-quit comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077524.806:23): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=polkit comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077524.826:24): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=getty@tty1 comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077525.326:25): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=firewalld comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=NETFILTER_CFG msg=audit(1554077525.356:26): table=filter family=2 entries=0
+type=SYSCALL msg=audit(1554077525.356:26): arch=c000003e syscall=175 success=yes exit=0 a0=19e9130 a1=1d95 a2=41a94e a3=19e5300 items=0 ppid=2742 pid=2743 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077525.356:26): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D0069707461626C655F66696C746572
+type=SERVICE_START msg=audit(1554077525.398:27): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=NETFILTER_CFG msg=audit(1554077525.428:28): table=filter family=2 entries=0
+type=SYSCALL msg=audit(1554077525.428:28): arch=c000003e syscall=272 success=yes exit=0 a0=40000000 a1=7fffede215e0 a2=40000040 a3=22 items=0 ppid=1 pid=2758 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="(ostnamed)" exe="/usr/lib/systemd/systemd" subj=system_u:system_r:init_t:s0 key=(null)
+type=NETFILTER_CFG msg=audit(1554077525.428:29): table=filter family=10 entries=0
+type=NETFILTER_CFG msg=audit(1554077525.428:29): table=filter family=10 entries=0
+type=PROCTITLE msg=audit(1554077525.428:28): proctitle="(ostnamed)"
+type=SYSCALL msg=audit(1554077525.428:29): arch=c000003e syscall=175 success=yes exit=0 a0=1dcd130 a1=1d85 a2=41a94e a3=1dc9300 items=0 ppid=2755 pid=2757 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077525.428:29): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D006970367461626C655F66696C746572
+type=SERVICE_START msg=audit(1554077525.489:30): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-hostnamed comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077525.520:31): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager-dispatcher comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=NETFILTER_CFG msg=audit(1554077525.586:32): table=raw family=2 entries=0
+type=NETFILTER_CFG msg=audit(1554077525.586:32): table=raw family=2 entries=0
+type=SYSCALL msg=audit(1554077525.586:32): arch=c000003e syscall=175 success=yes exit=0 a0=1153190 a1=1a75 a2=41a94e a3=114f300 items=0 ppid=2782 pid=2784 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077525.586:32): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D0069707461626C655F726177
+type=SERVICE_START msg=audit(1554077525.611:33): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager-wait-online comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=NETFILTER_CFG msg=audit(1554077525.626:34): table=security family=2 entries=0
+type=NETFILTER_CFG msg=audit(1554077525.626:34): table=security family=2 entries=0
+type=SYSCALL msg=audit(1554077525.626:34): arch=c000003e syscall=175 success=yes exit=0 a0=dbb170 a1=1b3d a2=41a94e a3=db7300 items=0 ppid=2791 pid=2794 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077525.626:34): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D0069707461626C655F7365637572697479
+type=NETFILTER_CFG msg=audit(1554077525.647:35): table=mangle family=2 entries=0
+type=NETFILTER_CFG msg=audit(1554077525.647:35): table=mangle family=2 entries=0
+type=SYSCALL msg=audit(1554077525.647:35): arch=c000003e syscall=175 success=yes exit=0 a0=16cf130 a1=1c75 a2=41a94e a3=16cb300 items=0 ppid=2805 pid=2808 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077525.647:35): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D0069707461626C655F6D616E676C65
+type=NETFILTER_CFG msg=audit(1554077525.723:36): table=nat family=2 entries=0
+type=NETFILTER_CFG msg=audit(1554077525.723:36): table=nat family=2 entries=0
+type=SYSCALL msg=audit(1554077525.723:36): arch=c000003e syscall=175 success=yes exit=0 a0=1b00890 a1=20ed a2=41a94e a3=1afc300 items=0 ppid=2818 pid=2821 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077525.723:36): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D0069707461626C655F6E6174
+type=NETFILTER_CFG msg=audit(1554077525.743:37): table=raw family=10 entries=0
+type=NETFILTER_CFG msg=audit(1554077525.743:37): table=raw family=10 entries=0
+type=SYSCALL msg=audit(1554077525.743:37): arch=c000003e syscall=175 success=yes exit=0 a0=1123130 a1=1a3d a2=41a94e a3=111f300 items=0 ppid=2868 pid=2870 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077525.743:37): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D006970367461626C655F726177
+type=NETFILTER_CFG msg=audit(1554077525.758:38): table=security family=10 entries=0
+type=NETFILTER_CFG msg=audit(1554077525.758:38): table=security family=10 entries=0
+type=SYSCALL msg=audit(1554077525.758:38): arch=c000003e syscall=175 success=yes exit=0 a0=2569130 a1=1b0d a2=41a94e a3=2565300 items=0 ppid=2877 pid=2878 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077525.758:38): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D006970367461626C655F7365637572697479
+type=NETFILTER_CFG msg=audit(1554077525.771:39): table=mangle family=10 entries=0
+type=NETFILTER_CFG msg=audit(1554077525.771:39): table=mangle family=10 entries=0
+type=SYSCALL msg=audit(1554077525.771:39): arch=c000003e syscall=175 success=yes exit=0 a0=215e130 a1=1d95 a2=41a94e a3=215a300 items=0 ppid=2884 pid=2885 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077525.771:39): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D006970367461626C655F6D616E676C65
+type=NETFILTER_CFG msg=audit(1554077525.815:40): table=nat family=10 entries=0
+type=NETFILTER_CFG msg=audit(1554077525.815:40): table=nat family=10 entries=0
+type=SYSCALL msg=audit(1554077525.815:40): arch=c000003e syscall=175 success=yes exit=0 a0=1b678b0 a1=20e5 a2=41a94e a3=1b63300 items=0 ppid=2892 pid=2893 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="modprobe" exe="/usr/bin/kmod" subj=system_u:system_r:insmod_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077525.815:40): proctitle=2F7362696E2F6D6F6470726F6265002D71002D2D006970367461626C655F6E6174
+type=SERVICE_START msg=audit(1554077526.116:41): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=network comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077526.186:42): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=rsyslog comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077526.236:43): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=sshd comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=NETFILTER_CFG msg=audit(1554077527.047:44): table=filter family=10 entries=4
+type=SYSCALL msg=audit(1554077527.047:44): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1cf5d60 items=0 ppid=2724 pid=3426 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.047:44): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.072:45): table=raw family=10 entries=3
+type=SYSCALL msg=audit(1554077527.072:45): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1cf4650 items=0 ppid=2724 pid=3426 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.072:45): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.072:46): table=security family=10 entries=4
+type=SYSCALL msg=audit(1554077527.072:46): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1cf4650 items=0 ppid=2724 pid=3426 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.072:46): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.072:47): table=mangle family=10 entries=6
+type=SYSCALL msg=audit(1554077527.072:47): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1cf4b70 items=0 ppid=2724 pid=3426 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.072:47): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.072:48): table=nat family=10 entries=5
+type=SYSCALL msg=audit(1554077527.072:48): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=1cf4a90 items=0 ppid=2724 pid=3426 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.072:48): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.095:49): table=filter family=2 entries=4
+type=SYSCALL msg=audit(1554077527.095:49): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=abf890 items=0 ppid=2724 pid=3474 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.095:49): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.116:50): table=raw family=2 entries=3
+type=SYSCALL msg=audit(1554077527.116:50): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=abe460 items=0 ppid=2724 pid=3474 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.116:50): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.116:51): table=security family=2 entries=4
+type=SYSCALL msg=audit(1554077527.116:51): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=abe460 items=0 ppid=2724 pid=3474 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.116:51): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.116:52): table=mangle family=2 entries=6
+type=SYSCALL msg=audit(1554077527.116:52): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=abe7a0 items=0 ppid=2724 pid=3474 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.116:52): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.116:53): table=nat family=2 entries=5
+type=SYSCALL msg=audit(1554077527.116:53): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=abe5e0 items=0 ppid=2724 pid=3474 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.116:53): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.130:54): table=filter family=7 entries=3
+type=SYSCALL msg=audit(1554077527.130:54): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=12b23b0 items=0 ppid=2724 pid=3491 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.130:54): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077527.132:55): table=broute family=7 entries=1
+type=SYSCALL msg=audit(1554077527.132:55): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=12b23b0 items=0 ppid=2724 pid=3491 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.132:55): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077527.132:56): table=nat family=7 entries=3
+type=SYSCALL msg=audit(1554077527.132:56): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=12b23b0 items=0 ppid=2724 pid=3491 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.132:56): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077527.150:57): table=raw family=10 entries=15
+type=SYSCALL msg=audit(1554077527.150:57): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=218c690 items=0 ppid=2724 pid=3498 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.150:57): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.186:58): table=filter family=2 entries=39
+type=SYSCALL msg=audit(1554077527.186:58): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=e5f2c0 items=0 ppid=2724 pid=3507 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.186:58): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.186:59): table=raw family=2 entries=15
+type=SYSCALL msg=audit(1554077527.186:59): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=e589a0 items=0 ppid=2724 pid=3507 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.186:59): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.186:60): table=mangle family=2 entries=27
+type=SYSCALL msg=audit(1554077527.186:60): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=e595d0 items=0 ppid=2724 pid=3507 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.186:60): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.186:61): table=nat family=2 entries=26
+type=SYSCALL msg=audit(1554077527.186:61): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=e5e7b0 items=0 ppid=2724 pid=3507 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.186:61): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.205:62): table=filter family=10 entries=39
+type=SYSCALL msg=audit(1554077527.205:62): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=aabb40 items=0 ppid=2724 pid=3511 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.205:62): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.206:63): table=raw family=10 entries=17
+type=SYSCALL msg=audit(1554077527.206:63): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=aa4360 items=0 ppid=2724 pid=3511 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.206:63): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.206:64): table=mangle family=10 entries=27
+type=SYSCALL msg=audit(1554077527.206:64): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=aaa990 items=0 ppid=2724 pid=3511 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.206:64): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.209:65): table=nat family=10 entries=26
+type=SYSCALL msg=audit(1554077527.209:65): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=aaa990 items=0 ppid=2724 pid=3511 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.209:65): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.216:66): table=filter family=10 entries=79
+type=SYSCALL msg=audit(1554077527.216:66): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=18700e0 items=0 ppid=2724 pid=3514 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.216:66): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.216:67): table=raw family=10 entries=29
+type=SYSCALL msg=audit(1554077527.216:67): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=186abf0 items=0 ppid=2724 pid=3514 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.216:67): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.216:68): table=security family=10 entries=13
+type=SYSCALL msg=audit(1554077527.216:68): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=18693c0 items=0 ppid=2724 pid=3514 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.216:68): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.226:69): table=mangle family=10 entries=39
+type=SYSCALL msg=audit(1554077527.226:69): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=29 a2=40 a3=186b840 items=0 ppid=2724 pid=3514 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ip6tables-resto" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.226:69): proctitle=2F7573722F7362696E2F6970367461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.236:70): table=filter family=2 entries=78
+type=SYSCALL msg=audit(1554077527.236:70): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=982410 items=0 ppid=2724 pid=3516 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.236:70): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.242:71): table=raw family=2 entries=27
+type=SYSCALL msg=audit(1554077527.242:71): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=97df50 items=0 ppid=2724 pid=3516 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.242:71): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.242:72): table=security family=2 entries=13
+type=SYSCALL msg=audit(1554077527.242:72): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=97cff0 items=0 ppid=2724 pid=3516 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.242:72): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.242:73): table=mangle family=2 entries=39
+type=SYSCALL msg=audit(1554077527.242:73): arch=c000003e syscall=54 success=yes exit=0 a0=4 a1=0 a2=40 a3=97ecc0 items=0 ppid=2724 pid=3516 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="iptables-restor" exe="/usr/sbin/xtables-multi" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.242:73): proctitle=2F7573722F7362696E2F69707461626C65732D726573746F7265002D77002D6E
+type=NETFILTER_CFG msg=audit(1554077527.256:74): table=filter family=7 entries=3
+type=SERVICE_START msg=audit(1554077527.260:75): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=postfix comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SYSCALL msg=audit(1554077527.256:74): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=21d7620 items=0 ppid=2724 pid=3518 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.256:74): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077527.262:76): table=broute family=7 entries=1
+type=SYSCALL msg=audit(1554077527.262:76): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=21d7620 items=0 ppid=2724 pid=3518 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.262:76): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=NETFILTER_CFG msg=audit(1554077527.262:77): table=nat family=7 entries=3
+type=SYSCALL msg=audit(1554077527.262:77): arch=c000003e syscall=54 success=yes exit=0 a0=3 a1=0 a2=80 a3=21d7620 items=0 ppid=2724 pid=3518 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 comm="ebtables-restor" exe="/usr/sbin/ebtables-restore" subj=system_u:system_r:iptables_t:s0 key=(null)
+type=PROCTITLE msg=audit(1554077527.262:77): proctitle=2F7573722F7362696E2F65627461626C65732D726573746F7265002D2D6E6F666C757368
+type=SERVICE_START msg=audit(1554077527.386:78): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=tuned comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SYSTEM_RUNLEVEL msg=audit(1554077527.416:79): pid=3527 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='old-level=N new-level=3 comm="systemd-update-utmp" exe="/usr/lib/systemd/systemd-update-utmp" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077527.416:80): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-update-utmp-runlevel comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077527.416:81): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-update-utmp-runlevel comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077528.427:82): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=kdump comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=USER_AUTH msg=audit(1554077533.326:83): pid=2725 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=PAM:authentication grantors=pam_securetty,pam_unix acct="root" exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=USER_ACCT msg=audit(1554077533.326:84): pid=2725 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="root" exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=CRED_ACQ msg=audit(1554077533.332:85): pid=2725 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_securetty,pam_unix acct="root" exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=LOGIN msg=audit(1554077533.332:86): pid=2725 uid=0 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 old-auid=4294967295 auid=0 tty=tty1 old-ses=4294967295 ses=1 res=1
+type=USER_ROLE_CHANGE msg=audit(1554077533.430:87): pid=2725 uid=0 auid=0 ses=1 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='pam: default-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 selected-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=USER_START msg=audit(1554077533.460:88): pid=2725 uid=0 auid=0 ses=1 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_selinux,pam_loginuid,pam_console,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=CRED_REFR msg=audit(1554077533.460:89): pid=2725 uid=0 auid=0 ses=1 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_securetty,pam_unix acct="root" exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=USER_LOGIN msg=audit(1554077533.460:90): pid=2725 uid=0 auid=0 ses=1 subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/bin/login" hostname=localhost.localdomain addr=? terminal=tty1 res=success'
+type=SERVICE_STOP msg=audit(1554077536.144:91): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager-dispatcher comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_START msg=audit(1554077538.466:92): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager-dispatcher comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077549.127:93): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=NetworkManager-dispatcher comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077549.935:94): pid=3745 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3745 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077549.935:95): pid=3745 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3745 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077549.935:96): pid=3745 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3745 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077549.938:97): pid=3744 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-server cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3745 suid=74 rport=37886 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077549.938:98): pid=3744 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-client cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3745 suid=74 rport=37886 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=SERVICE_STOP msg=audit(1554077555.526:99): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=systemd-hostnamed comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=success'
+type=USER_AUTH msg=audit(1554077560.032:100): pid=3744 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:authentication grantors=? acct="?" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077561.831:101): pid=3744 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=password acct="(unknown)" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077563.210:102): pid=3744 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=password acct="(unknown)" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077563.834:103): pid=3744 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=password acct="(unknown)" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=CRYPTO_KEY_USER msg=audit(1554077563.835:104): pid=3744 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3745 suid=74  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077563.835:105): pid=3744 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=3745 suid=74 rport=37886 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077563.836:106): pid=3744 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3744 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077563.836:107): pid=3744 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3744 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077563.836:108): pid=3744 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3744 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=USER_LOGIN msg=audit(1554077563.836:109): pid=3744 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=login acct="(unknown)" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=CRYPTO_KEY_USER msg=audit(1554077568.049:110): pid=3751 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3751 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077568.049:111): pid=3751 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3751 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077568.049:112): pid=3751 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3751 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077568.050:113): pid=3750 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-server cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3751 suid=74 rport=38272 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077568.050:114): pid=3750 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-client cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3751 suid=74 rport=38272 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077568.110:115): pid=3750 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=pubkey acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077568.112:116): pid=3750 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=pubkey acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077570.867:117): pid=3750 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:authentication grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_ACCT msg=audit(1554077570.875:118): pid=3750 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077570.876:119): pid=3750 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=3751 suid=74 rport=38272 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077570.877:120): pid=3750 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=success acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=success'
+type=CRED_ACQ msg=audit(1554077570.881:121): pid=3750 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=LOGIN msg=audit(1554077570.881:122): pid=3750 uid=0 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=4294967295 auid=0 tty=(none) old-ses=4294967295 ses=2 res=1
+type=USER_ROLE_CHANGE msg=audit(1554077571.006:123): pid=3750 uid=0 auid=0 ses=2 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='pam: default-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 selected-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_START msg=audit(1554077571.028:124): pid=3750 uid=0 auid=0 ses=2 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_selinux,pam_loginuid,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077571.039:125): pid=3754 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3754 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/0 res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077571.039:126): pid=3754 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3754 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/0 res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077571.039:127): pid=3754 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3754 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/0 res=success'
+type=USER_LOGIN msg=audit(1554077571.046:128): pid=3754 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=/dev/pts/0 res=success'
+type=USER_START msg=audit(1554077571.049:129): pid=3754 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=/dev/pts/0 res=success'
+type=CRED_REFR msg=audit(1554077571.053:130): pid=3754 uid=0 auid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077813.667:131): pid=3776 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3776 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077813.667:132): pid=3776 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3776 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077813.667:133): pid=3776 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3776 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077813.669:134): pid=3775 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-server cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3776 suid=74 rport=38390 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077813.669:135): pid=3775 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-client cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3776 suid=74 rport=38390 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077813.766:136): pid=3775 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=pubkey acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077813.767:137): pid=3775 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=pubkey acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077829.382:138): pid=3775 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:authentication grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_ACCT msg=audit(1554077829.388:139): pid=3775 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077829.389:140): pid=3775 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=3776 suid=74 rport=38390 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077829.390:141): pid=3775 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=success acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=success'
+type=CRED_ACQ msg=audit(1554077829.394:142): pid=3775 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=LOGIN msg=audit(1554077829.394:143): pid=3775 uid=0 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=4294967295 auid=0 tty=(none) old-ses=4294967295 ses=3 res=1
+type=USER_ROLE_CHANGE msg=audit(1554077829.501:144): pid=3775 uid=0 auid=0 ses=3 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='pam: default-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 selected-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_START msg=audit(1554077829.527:145): pid=3775 uid=0 auid=0 ses=3 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_selinux,pam_loginuid,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077829.532:146): pid=3779 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3779 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/1 res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077829.532:147): pid=3779 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3779 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/1 res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077829.532:148): pid=3779 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3779 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/1 res=success'
+type=USER_LOGIN msg=audit(1554077829.538:149): pid=3779 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=/dev/pts/1 res=success'
+type=USER_START msg=audit(1554077829.541:150): pid=3779 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=/dev/pts/1 res=success'
+type=CRED_REFR msg=audit(1554077829.545:151): pid=3779 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_END msg=audit(1554077838.055:152): pid=3775 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=? addr=? terminal=/dev/pts/1 res=success'
+type=USER_END msg=audit(1554077838.071:153): pid=3775 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_close grantors=pam_selinux,pam_loginuid,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRED_DISP msg=audit(1554077838.074:154): pid=3775 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077838.074:155): pid=3775 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3775 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077838.074:156): pid=3775 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3775 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077838.074:157): pid=3775 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3775 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077838.074:158): pid=3775 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=3775 suid=0 rport=38390 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077887.728:159): pid=3796 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3796 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077887.728:160): pid=3796 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3796 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077887.728:161): pid=3796 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3796 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077887.731:162): pid=3795 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-server cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3796 suid=74 rport=39936 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077887.731:163): pid=3795 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-client cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3796 suid=74 rport=39936 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077887.800:164): pid=3795 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=pubkey acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077887.802:165): pid=3795 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=pubkey acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077890.325:166): pid=3795 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:authentication grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_ACCT msg=audit(1554077890.334:167): pid=3795 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077890.336:168): pid=3795 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=3796 suid=74 rport=39936 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077890.337:169): pid=3795 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=success acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=success'
+type=CRED_ACQ msg=audit(1554077890.341:170): pid=3795 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=LOGIN msg=audit(1554077890.341:171): pid=3795 uid=0 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=4294967295 auid=0 tty=(none) old-ses=4294967295 ses=4 res=1
+type=USER_ROLE_CHANGE msg=audit(1554077890.453:172): pid=3795 uid=0 auid=0 ses=4 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='pam: default-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 selected-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_START msg=audit(1554077890.478:173): pid=3795 uid=0 auid=0 ses=4 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_selinux,pam_loginuid,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_LOGIN msg=audit(1554077890.485:174): pid=3795 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_START msg=audit(1554077890.488:175): pid=3795 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077890.491:176): pid=3799 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3799 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077890.491:177): pid=3799 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3799 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077890.491:178): pid=3799 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3799 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRED_REFR msg=audit(1554077890.494:179): pid=3799 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_END msg=audit(1554077918.747:180): pid=3795 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_close grantors=pam_selinux,pam_loginuid,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRED_DISP msg=audit(1554077918.751:181): pid=3795 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_END msg=audit(1554077918.754:182): pid=3795 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_LOGOUT msg=audit(1554077918.756:183): pid=3795 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077918.756:184): pid=3795 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3795 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077918.756:185): pid=3795 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3795 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077918.756:186): pid=3795 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3795 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077918.756:187): pid=3795 uid=0 auid=0 ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=3795 suid=0 rport=39936 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077921.063:188): pid=3806 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3806 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077921.063:189): pid=3806 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3806 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077921.063:190): pid=3806 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3806 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077921.067:191): pid=3805 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-server cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3806 suid=74 rport=40404 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077921.067:192): pid=3805 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-client cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3806 suid=74 rport=40404 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077921.124:193): pid=3805 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=pubkey acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077921.126:194): pid=3805 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=pubkey acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077923.485:195): pid=3805 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:authentication grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_ACCT msg=audit(1554077923.491:196): pid=3805 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077923.493:197): pid=3805 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=3806 suid=74 rport=40404 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077923.494:198): pid=3805 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=success acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=success'
+type=CRED_ACQ msg=audit(1554077923.497:199): pid=3805 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=LOGIN msg=audit(1554077923.497:200): pid=3805 uid=0 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=4294967295 auid=0 tty=(none) old-ses=4294967295 ses=5 res=1
+type=USER_ROLE_CHANGE msg=audit(1554077923.614:201): pid=3805 uid=0 auid=0 ses=5 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='pam: default-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 selected-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_START msg=audit(1554077923.638:202): pid=3805 uid=0 auid=0 ses=5 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_selinux,pam_loginuid,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077923.645:203): pid=3809 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3809 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/1 res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077923.645:204): pid=3809 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3809 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/1 res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077923.645:205): pid=3809 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3809 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/1 res=success'
+type=USER_LOGIN msg=audit(1554077923.650:206): pid=3809 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=/dev/pts/1 res=success'
+type=USER_START msg=audit(1554077923.654:207): pid=3809 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=/dev/pts/1 res=success'
+type=CRED_REFR msg=audit(1554077923.661:208): pid=3809 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_END msg=audit(1554077929.423:209): pid=3805 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=? addr=? terminal=/dev/pts/1 res=success'
+type=USER_END msg=audit(1554077929.436:210): pid=3805 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_close grantors=pam_selinux,pam_loginuid,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRED_DISP msg=audit(1554077929.439:211): pid=3805 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077929.439:212): pid=3805 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3805 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077929.439:213): pid=3805 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3805 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077929.439:214): pid=3805 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3805 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077929.439:215): pid=3805 uid=0 auid=0 ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=3805 suid=0 rport=40404 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077964.524:216): pid=3832 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3832 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077964.524:217): pid=3832 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3832 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077964.524:218): pid=3832 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3832 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077964.527:219): pid=3831 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-server cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3832 suid=74 rport=46698 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077964.527:220): pid=3831 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-client cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3832 suid=74 rport=46698 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077964.590:221): pid=3831 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=pubkey acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077964.590:222): pid=3831 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=pubkey acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077969.794:223): pid=3831 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:authentication grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_ACCT msg=audit(1554077969.800:224): pid=3831 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077969.803:225): pid=3831 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=3832 suid=74 rport=46698 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077969.803:226): pid=3831 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=success acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=success'
+type=CRED_ACQ msg=audit(1554077969.808:227): pid=3831 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=LOGIN msg=audit(1554077969.808:228): pid=3831 uid=0 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=4294967295 auid=0 tty=(none) old-ses=4294967295 ses=6 res=1
+type=USER_ROLE_CHANGE msg=audit(1554077969.920:229): pid=3831 uid=0 auid=0 ses=6 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='pam: default-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 selected-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_START msg=audit(1554077969.943:230): pid=3831 uid=0 auid=0 ses=6 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_selinux,pam_loginuid,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_LOGIN msg=audit(1554077969.952:231): pid=3831 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_START msg=audit(1554077969.955:232): pid=3831 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077969.957:233): pid=3835 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3835 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077969.957:234): pid=3835 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3835 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077969.958:235): pid=3835 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3835 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRED_REFR msg=audit(1554077969.962:236): pid=3835 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_END msg=audit(1554077988.137:237): pid=3831 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_close grantors=pam_selinux,pam_loginuid,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRED_DISP msg=audit(1554077988.142:238): pid=3831 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_END msg=audit(1554077988.162:239): pid=3831 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_LOGOUT msg=audit(1554077988.166:240): pid=3831 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077988.166:241): pid=3831 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3831 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077988.166:242): pid=3831 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3831 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077988.166:243): pid=3831 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3831 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077988.166:244): pid=3831 uid=0 auid=0 ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=3831 suid=0 rport=46698 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077991.610:245): pid=3842 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3842 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077991.610:246): pid=3842 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3842 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077991.610:247): pid=3842 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3842 suid=0  exe="/usr/sbin/sshd" hostname=? addr=? terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077991.613:248): pid=3841 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-server cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3842 suid=74 rport=47386 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=CRYPTO_SESSION msg=audit(1554077991.613:249): pid=3841 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=start direction=from-client cipher=chacha20-poly1305@openssh.com ksize=512 mac=<implicit> pfs=curve25519-sha256 spid=3842 suid=74 rport=47386 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077991.676:250): pid=3841 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=pubkey acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077991.676:251): pid=3841 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=pubkey acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=failed'
+type=USER_AUTH msg=audit(1554077993.835:252): pid=3841 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:authentication grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_ACCT msg=audit(1554077993.841:253): pid=3841 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:accounting grantors=pam_unix,pam_localuser acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077993.842:254): pid=3841 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=destroy kind=session fp=? direction=both spid=3842 suid=74 rport=47386 laddr=10.0.2.15 lport=22  exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=? res=success'
+type=USER_AUTH msg=audit(1554077993.843:255): pid=3841 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=success acct="root" exe="/usr/sbin/sshd" hostname=? addr=10.0.2.2 terminal=ssh res=success'
+type=CRED_ACQ msg=audit(1554077993.847:256): pid=3841 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=LOGIN msg=audit(1554077993.847:257): pid=3841 uid=0 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=4294967295 auid=0 tty=(none) old-ses=4294967295 ses=7 res=1
+type=USER_ROLE_CHANGE msg=audit(1554077993.962:258): pid=3841 uid=0 auid=0 ses=7 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='pam: default-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 selected-context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=USER_START msg=audit(1554077993.984:259): pid=3841 uid=0 auid=0 ses=7 subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_selinux,pam_loginuid,pam_selinux,pam_namespace,pam_keyinit,pam_keyinit,pam_limits,pam_systemd,pam_unix,pam_lastlog acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077993.990:260): pid=3845 uid=0 auid=0 ses=7 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f0:52:51:d8:eb:cf:25:aa:6f:2a:d3:36:32:5a:9b:77:aa:5d:0e:d1:3a:2d:f1:3c:a7:31:52:ea:24:41:ca:9e direction=? spid=3845 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/1 res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077993.990:261): pid=3845 uid=0 auid=0 ses=7 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:d3:4a:e8:14:9c:55:93:5f:1f:1d:9d:f4:6e:d0:d9:ce:ad:61:76:5e:a0:05:da:97:c5:a4:49:df:62:41:e4:d1 direction=? spid=3845 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/1 res=success'
+type=CRYPTO_KEY_USER msg=audit(1554077993.990:262): pid=3845 uid=0 auid=0 ses=7 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=destroy kind=server fp=SHA256:f2:31:49:2b:89:50:6f:d6:2d:7b:e3:dd:6b:a6:a9:fb:7e:89:a6:ff:9f:12:7a:93:57:85:4b:d1:21:99:51:84 direction=? spid=3845 suid=0  exe="/usr/sbin/sshd" hostname=localhost.localdomain addr=? terminal=pts/1 res=success'
+type=USER_LOGIN msg=audit(1554077993.996:263): pid=3845 uid=0 auid=0 ses=7 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=/dev/pts/1 res=success'
+type=USER_START msg=audit(1554077993.998:264): pid=3845 uid=0 auid=0 ses=7 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=login id=0 exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=/dev/pts/1 res=success'
+type=CRED_REFR msg=audit(1554077994.001:265): pid=3845 uid=0 auid=0 ses=7 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:setcred grantors=pam_unix acct="root" exe="/usr/sbin/sshd" hostname=gateway addr=10.0.2.2 terminal=ssh res=success'
++ auditctl
+usage: auditctl [options]
+    -a <l,a>            Append rule to end of <l>ist with <a>ction
+    -A <l,a>            Add rule at beginning of <l>ist with <a>ction
+    -b <backlog>        Set max number of outstanding audit buffers
+                        allowed Default=64
+    -c                  Continue through errors in rules
+    -C f=f              Compare collected fields if available:
+                        Field name, operator(=,!=), field name
+    -d <l,a>            Delete rule from <l>ist with <a>ction
+                        l=task,exit,user,exclude
+                        a=never,always
+    -D                  Delete all rules and watches
+    -e [0..2]           Set enabled flag
+    -f [0..2]           Set failure flag
+                        0=silent 1=printk 2=panic
+    -F f=v              Build rule: field name, operator(=,!=,<,>,<=,
+                        >=,&,&=) value
+    -h                  Help
+    -i                  Ignore errors when reading rules from file
+    -k <key>            Set filter key on audit rule
+    -l                  List rules
+    -m text             Send a user-space message
+    -p [r|w|x|a]        Set permissions filter on watch
+                        r=read, w=write, x=execute, a=attribute
+    -q <mount,subtree>  make subtree part of mount point's dir watches
+    -r <rate>           Set limit in messages/sec (0=none)
+    -R <file>           read rules from file
+    -s                  Report status
+    -S syscall          Build rule: syscall name or number
+    -t                  Trim directory watches
+    -v                  Version
+    -w <path>           Insert watch at <path>
+    -W <path>           Remove watch at <path>
+    --loginuid-immutable  Make loginuids unchangeable once set
+    --reset-lost         Reset the lost record counter
++ auditctl -l
+No rules
++ auditctl -a exit,always -F path=/etc/passwd -F perm=wa
++ auditctl -a exit,always -F path=/etc/passwd -F perm=wa
+Error sending add rule data request (Rule exists)
++ ausearch -f /etc/passwd
+<no matches>
++ adduser xyz
++ ausearch -f /etc/passwd
+----
+time->Sun Mar 31 20:20:06 2019
+type=PROCTITLE msg=audit(1554078006.323:268): proctitle=616464757365720078797A
+type=PATH msg=audit(1554078006.323:268): item=0 name="/etc/passwd" inode=17609528 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 objtype=NORMAL cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=CWD msg=audit(1554078006.323:268):  cwd="/root"
+type=SYSCALL msg=audit(1554078006.323:268): arch=c000003e syscall=2 success=yes exit=5 a0=55cd87f0cce0 a1=20902 a2=0 a3=8 items=1 ppid=3867 pid=3884 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts2 ses=7 comm="adduser" exe="/usr/sbin/useradd" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=(null)
+----
+time->Sun Mar 31 20:20:06 2019
+type=CONFIG_CHANGE msg=audit(1554078006.332:271): auid=0 ses=7 op=updated_rules path="/etc/passwd" key=(null) list=4 res=1
+----
+time->Sun Mar 31 20:20:06 2019
+type=PROCTITLE msg=audit(1554078006.332:272): proctitle=616464757365720078797A
+type=PATH msg=audit(1554078006.332:272): item=4 name="/etc/passwd" inode=17609550 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 objtype=CREATE cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=PATH msg=audit(1554078006.332:272): item=3 name="/etc/passwd" inode=17609528 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 objtype=DELETE cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=PATH msg=audit(1554078006.332:272): item=2 name="/etc/passwd+" inode=17609550 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 objtype=DELETE cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=PATH msg=audit(1554078006.332:272): item=1 name="/etc/" inode=16777281 dev=fd:00 mode=040755 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:etc_t:s0 objtype=PARENT cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=PATH msg=audit(1554078006.332:272): item=0 name="/etc/" inode=16777281 dev=fd:00 mode=040755 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:etc_t:s0 objtype=PARENT cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=CWD msg=audit(1554078006.332:272):  cwd="/root"
+type=SYSCALL msg=audit(1554078006.332:272): arch=c000003e syscall=82 success=yes exit=0 a0=7ffe48fc1200 a1=55cd87f0cce0 a2=7ffe48fc1170 a3=55cd8809ebf0 items=5 ppid=3867 pid=3884 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts2 ses=7 comm="adduser" exe="/usr/sbin/useradd" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=(null)
++ grep -o 'syscall=\([0-9]*\)'
++ cut -d= -f2
++ xargs -l ausyscall
++ ausearch -f /etc/passwd
+open
+rename
++ dir /etc/passwd -l
+-rw-r--r--. 1 root root 835 Mar 31 20:20 /etc/passwd
++ chmod 640 /etc/passwd
++ dir /etc/passwd -l
+-rw-r-----. 1 root root 835 Mar 31 20:20 /etc/passwd
++ ausearch -f /etc/passwd
+----
+time->Sun Mar 31 20:20:06 2019
+type=PROCTITLE msg=audit(1554078006.323:268): proctitle=616464757365720078797A
+type=PATH msg=audit(1554078006.323:268): item=0 name="/etc/passwd" inode=17609528 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 objtype=NORMAL cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=CWD msg=audit(1554078006.323:268):  cwd="/root"
+type=SYSCALL msg=audit(1554078006.323:268): arch=c000003e syscall=2 success=yes exit=5 a0=55cd87f0cce0 a1=20902 a2=0 a3=8 items=1 ppid=3867 pid=3884 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts2 ses=7 comm="adduser" exe="/usr/sbin/useradd" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=(null)
+----
+time->Sun Mar 31 20:20:06 2019
+type=CONFIG_CHANGE msg=audit(1554078006.332:271): auid=0 ses=7 op=updated_rules path="/etc/passwd" key=(null) list=4 res=1
+----
+time->Sun Mar 31 20:20:06 2019
+type=PROCTITLE msg=audit(1554078006.332:272): proctitle=616464757365720078797A
+type=PATH msg=audit(1554078006.332:272): item=4 name="/etc/passwd" inode=17609550 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 objtype=CREATE cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=PATH msg=audit(1554078006.332:272): item=3 name="/etc/passwd" inode=17609528 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 objtype=DELETE cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=PATH msg=audit(1554078006.332:272): item=2 name="/etc/passwd+" inode=17609550 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 objtype=DELETE cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=PATH msg=audit(1554078006.332:272): item=1 name="/etc/" inode=16777281 dev=fd:00 mode=040755 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:etc_t:s0 objtype=PARENT cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=PATH msg=audit(1554078006.332:272): item=0 name="/etc/" inode=16777281 dev=fd:00 mode=040755 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:etc_t:s0 objtype=PARENT cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=CWD msg=audit(1554078006.332:272):  cwd="/root"
+type=SYSCALL msg=audit(1554078006.332:272): arch=c000003e syscall=82 success=yes exit=0 a0=7ffe48fc1200 a1=55cd87f0cce0 a2=7ffe48fc1170 a3=55cd8809ebf0 items=5 ppid=3867 pid=3884 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts2 ses=7 comm="adduser" exe="/usr/sbin/useradd" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=(null)
+----
+time->Sun Mar 31 20:20:06 2019
+type=PROCTITLE msg=audit(1554078006.365:274): proctitle=63686D6F6400363430002F6574632F706173737764
+type=PATH msg=audit(1554078006.365:274): item=0 name="/etc/passwd" inode=17609550 dev=fd:00 mode=0100644 ouid=0 ogid=0 rdev=00:00 obj=system_u:object_r:passwd_file_t:s0 objtype=NORMAL cap_fp=0000000000000000 cap_fi=0000000000000000 cap_fe=0 cap_fver=0
+type=CWD msg=audit(1554078006.365:274):  cwd="/root"
+type=SYSCALL msg=audit(1554078006.365:274): arch=c000003e syscall=268 success=yes exit=0 a0=ffffffffffffff9c a1=1d880f0 a2=1a0 a3=7fffaa3be3e0 items=1 ppid=3867 pid=3897 auid=0 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts2 ses=7 comm="chmod" exe="/usr/bin/chmod" subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=(null)
++ grep -o 'comm=[^ ]*'
++ cut '-d"' -f2
++ ausearch -f /etc/passwd
+adduser
+adduser
+chmod
++ ausearch -f /etc/passwd
++ aureport -f -i
+
+File Report
+===============================================
+# date time file syscall success exe auid event
+===============================================
+1. 31/03/19 20:20:06 /etc/passwd open yes /usr/sbin/useradd root 268
+2. 31/03/19 20:20:06 /etc/passwd ? yes ? root 271
+3. 31/03/19 20:20:06 /etc/passwd rename yes /usr/sbin/useradd root 272
+4. 31/03/19 20:20:06 /etc/passwd fchmodat yes /usr/bin/chmod root 274
++ ausearch -m LOGIN --start today -i
+----
+type=LOGIN msg=audit(31/03/19 20:07:08.116:87) : pid=2737 uid=root subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 old-auid=unset auid=root tty=tty1 old-ses=4294967295 ses=1 res=yes 
+----
+type=LOGIN msg=audit(31/03/19 20:07:26.460:103) : pid=12969 uid=root subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=unset auid=root tty=(none) old-ses=4294967295 ses=2 res=yes 
+----
+type=LOGIN msg=audit(31/03/19 20:12:13.332:86) : pid=2725 uid=root subj=system_u:system_r:local_login_t:s0-s0:c0.c1023 old-auid=unset auid=root tty=tty1 old-ses=4294967295 ses=1 res=yes 
+----
+type=LOGIN msg=audit(31/03/19 20:12:50.881:122) : pid=3750 uid=root subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=unset auid=root tty=(none) old-ses=4294967295 ses=2 res=yes 
+----
+type=LOGIN msg=audit(31/03/19 20:17:09.394:143) : pid=3775 uid=root subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=unset auid=root tty=(none) old-ses=4294967295 ses=3 res=yes 
+----
+type=LOGIN msg=audit(31/03/19 20:18:10.341:171) : pid=3795 uid=root subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=unset auid=root tty=(none) old-ses=4294967295 ses=4 res=yes 
+----
+type=LOGIN msg=audit(31/03/19 20:18:43.497:200) : pid=3805 uid=root subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=unset auid=root tty=(none) old-ses=4294967295 ses=5 res=yes 
+----
+type=LOGIN msg=audit(31/03/19 20:19:29.808:228) : pid=3831 uid=root subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=unset auid=root tty=(none) old-ses=4294967295 ses=6 res=yes 
+----
+type=LOGIN msg=audit(31/03/19 20:19:53.847:257) : pid=3841 uid=root subj=system_u:system_r:sshd_t:s0-s0:c0.c1023 old-auid=unset auid=root tty=(none) old-ses=4294967295 ses=7 res=yes 
+
+Script done on Sun 31 Mar 2019 08:20:06 PM EDT

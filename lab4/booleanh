@@ -1,0 +1,19 @@
+usage: semanage boolean [-h] [-n] [-N] [-S STORE] [  --extract  | --deleteall  | --list -C | --modify ( --on | --off ) boolean ]
+
+positional arguments:
+  boolean               boolean
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -C, --locallist       List boolean local customizations
+  -n, --noheading       Do not print heading when listing boolean object types
+  -N, --noreload        Do not reload policy after commit
+  -S STORE, --store STORE
+                        Select an alternate SELinux Policy Store to manage
+  -m, --modify          Modify a record of the boolean object type
+  -l, --list            List records of the boolean object type
+  -E, --extract         Extract customizable commands, for use within a
+                        transaction
+  -D, --deleteall       Remove all boolean objects local customizations
+  -1, --on              Enable the boolean
+  -0, --off             Disable the boolean

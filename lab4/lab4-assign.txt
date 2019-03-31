@@ -1,0 +1,271 @@
+Lab 4: Managing Security Enhanced Linux
+Mandatory Access Control Security Policies
+
+Introduction to Computer Security – EECS 3482
+Department of Electrical Engineering and Computer Science
+Khalil Abuosba, Ph.D.
+Winter 2019
+
+Lab 4
+
+EECS 3482
+
+Winter 2019
+
+Page 1 of 8
+
+SELinux implements four forms of access control policies:
+•
+
+Type Enforcement (TE): Type Enforcement is the primary mechanism of access
+control used in the targeted policy.
+
+•
+
+Role-Based Access Control (RBAC): Based around SELinux users (not necessarily
+the same as the Linux user), but not used in the default configuration of the
+targeted policy.
+
+•
+
+Multi-Level Security (MLS): Not commonly used and often hidden in the default
+targeted policy.
+
+•
+
+Multi-Category Security(MCS): An extension of Multi-Level Security, used in the
+targeted policy to implement compartmentalization of virtual machines and
+containers
+
+•
+
+2. Introduction
+o
+o
+o
+o
+
+•
+
+3. SELinux Contexts
+o
+o
+o
+
+•
+
+•
+
+3.1. Domain Transitions
+3.2. SELinux Contexts for Processes
+3.3. SELinux Contexts for Users
+
+4. Targeted Policy
+o
+o
+o
+
+•
+
+2.1. Benefits of running SELinux
+2.2. Examples
+2.3. SELinux Architecture
+2.4. SELinux States and Modes
+
+4.1. Confined Processes
+4.2. Unconfined Processes
+4.3. Confined and Unconfined Users
+
+o 5.4.1. Enabling SELinux
+o 5.4.2. Disabling SELinux
+5.5. Booleans
+o 5.5.1. Listing Booleans
+o 5.5.2. Configuring Booleans
+5.6. SELinux Contexts – Labeling Files
+
+Lab 4
+
+EECS 3482
+
+Winter 2019
+
+Page 2 of 8
+
+The purpose of this lab is to introduce the four mechanisms as well as expose to the SELinux operating
+systems labels.
+
+General Information and Policies
+- Solutions must to be submitted on through the Moodle system.
+- Ideal reports include screen snapshots of all of the exercises as well as copies of data segments where
+applicable.
+
+Objectives
+-
+
+To introduce SELinux operating system.
+To expose you to secure computational environments of cloud computing.
+
+Keywords
+SELinux, labeles. Selilinux-manage, mls, mcs, rbac, te.
+
+Reading and References
+- SECURITY-ENHANCED LINUX: https://access.redhat.com/documentation/enus/red_hat_enterprise_linux/6/html/security-enhanced_linux/
+- Debian SELinux Setup: https://wiki.debian.org/SELinux/Setup
+
+Software Requirements
+-
+
+Kali Linux
+
+Deliverables
+-
+
+Lab report that includes snapshot of the procedures and answers to the
+questions addressed in the lab.
+
+Lab 4
+
+EECS 3482
+
+Winter 2019
+
+Page 3 of 8
+
+Part 1: Activation of SELinux on Kali Linux
+1. Using the VirtualBox create a new Kali Linux virtual machine
+o Download the image at: https://images.offensive-security.com/virtualimages/kali-linux-2019.1-vbox-amd64.ova located at:
+https://www.offensive-security.com/kali-linux-vm-vmware-virtualboximage-download/
+o Import the image to the VirtualBox Player: File ➔ Import Appliance
+
+Next ➔ import
+• If you encounter an error you might want to disable the
+USB I/F
+
+Lab 4
+
+EECS 3482
+
+Winter 2019
+
+Page 4 of 8
+
+2. Log in to the server using the credentials root, toor (username, password).
+3. The next step is to configure SELinux (activate and enable the security policy):
+3.1 Start a terminal session
+3.2 Get the default policy and the basic set of SELinux utilities by running
+apt-get install selinux-basics selinux-policy-default auditd
+
+3.3 Run selinux-activate to configure GRUB and PAM and to create
+/.autorelabel
+4. Reboot by typing reboot, it will take a while to label the filesystems on boot and
+then it will automatically reboot a second time when that is complete.
+4.1 Run check-selinux-installation to check that everything has been setup
+correctly, there might be 2 or 3 false positives that you should ignore.
+4.2 Test the current SELinux status by running sestatus (document the current
+status).
+4.3 Determine the current position of the directory by running: pwd
+4.4 Verify and switch to the root directory by running: cd /root as well as: pwd
+4.5 List the contents of the current directory by running ls -l
+4.6 List the contents of the current directory by running (capital Z) to list contents in
+SELnux format ls -Z
+5. Type the contents of the file config using the command: cat /etc/selinux/config
+5.1
+What is the current status of SELINUX?
+5.2
+What is the current type of SELINUX?
+6. Type the list of switches for the command semange ➔ semanage -h
+7. Type the list of switches for the command semanage with Boolean option ➔
+samanage Boolean
+8. List all Boolean values ➔ semanage boolean -l
+8.1
+What is the default value of the fenced_can_ssh process?
+8.2
+What is the current value of the user_ping process?
+8.3
+Attempt: getsebool user_ping and getsebool fenced_can_ssh
+9. Determine the current Boolean value for Apache capability to connect to
+database:
+getsebool httpd_can_network_connect_db
+
+Lab 4
+
+EECS 3482
+
+Winter 2019
+
+Page 5 of 8
+
+10. Modify the capability to allow Apache to connect to database
+setsebool httpd_can_network_connect_db on
+11. Verify whether the capability has been modified or not.
+12. Make the change persistent across reboots using the command
+setsebool -P httpd_can_network_connect_db on
+
+13. Determine the current context of the Apache server, what type of process is it?
+ps axZ | grep httpd
+
+14. List the currently supported roles in the environment ➔ seinfo -r
+o If the policy analysis command tools are not installed, you will be
+prompted to install them and agree to the process of installation.
+15. Start the Apache Server: apache2ctl start
+16. Verify the Status of the server: systemctl status apache2
+17. Verify the current context by running step 13 above:
+ps axZ | grep httpd
+
+Lab 4
+
+EECS 3482
+
+Winter 2019
+
+Page 6 of 8
+
+Part 2: Relabeling Files in SELinux
+Using Apache as an example, suppose you want to change the DocumentRoot to serve web pages from
+a location other than the default /var/www/html/ directory. Assume we create a directory at /html/ and
+create an index.html file there:
+1. Create Directory
+mkdir /html
+2. Create the index.html file
+touch /html/index.html
+3. List the context labels for the file
+ls -Z /html/index.html
+4. List the context label for the directory
+ls -Z | grep html
+5. Attempt to start the browser and document the output
+6. Change the context for the directory
+chcon -v --type=httpd_sys_content_t /html
+7. Change the context for the file
+chcon -v --type=httpd_sys_content_t /html/index.html
+a. ls -Z /html/index.html
+b. ls -Z | grep html
+Document the output
+8. Relabeling the entire file system
+a. touch /.autorelabe
+
+Lab 4
+
+EECS 3482
+
+Winter 2019
+
+Page 7 of 8
+
+b. reboot
+c. genhomedircon
+d. touch /.autorelabel
+e. reboot
+document the output
+9. Allowing access to ports and list the ports
+a. semanage port -a -t http_port_t -p tcp 81
+b. semanage port -l
+
+Lab 4
+
+EECS 3482
+
+Winter 2019
+
+Page 8 of 8
+
+
